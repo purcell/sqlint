@@ -35,8 +35,8 @@ Gem::Specification.new do |s|
   s.rubygems_version = '1.8.23'
   s.summary = 'Simple SQL linter.'
 
-  s.add_runtime_dependency('pg_query', '>= 0.5')
+  s.add_runtime_dependency('pg_query', '~> 0.5')
   s.add_development_dependency('rake', '~> 10.1')
-  s.add_development_dependency('rspec', '~> 3.2.0')
+  s.add_development_dependency('rspec', '~> 3.2')
   s.add_development_dependency('bundler', '~> 1.3')
 end
