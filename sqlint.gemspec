@@ -1,11 +1,12 @@
 # encoding: utf-8
 
 $LOAD_PATH.unshift File.expand_path('../lib', __FILE__)
+require 'sqlint'
 require 'English'
 
 Gem::Specification.new do |s|
   s.name = 'sqlint'
-  s.version = "0.0.1"
+  s.version = SQLint::VERSION
   s.platform = Gem::Platform::RUBY
   s.required_ruby_version = '>= 1.9.3'
   s.authors = ['Steve Purcell', 'Kieran Trezona-le Comte']

@@ -1,6 +1,13 @@
 #!/usr/bin/env ruby
 
+$LOAD_PATH.unshift(File.dirname(File.realpath(__FILE__)) + '/../lib')
 require 'pg_query'
+require 'sqlint'
+
+if ARGV.include?("--version")
+  puts SQLint::VERSION
+  exit 0
+end
 
 ARGV.each do |filename|
   contents = File.read(filename)
