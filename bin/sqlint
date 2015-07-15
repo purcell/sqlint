@@ -1,0 +1,21 @@
+#!/usr/bin/env ruby
+
+require 'pg_query'
+
+ARGV.each do |filename|
+  contents = File.read(filename)
+  begin
+    PgQuery.parse(File.read(filename))
+  rescue PgQuery::ParseError => e
+    offset = e.location
+    before_error = contents[0...(offset-1)]
+    lines = before_error.split("\n")
+    line_number = lines.size
+    column_number = lines.last.size
+    message_lines = e.message.split("\n")
+    puts [filename, line_number, column_number, message_lines.shift].join(":")
+    message_lines.each do |line|
+      puts "  " + line
+    end
+  end
+end
