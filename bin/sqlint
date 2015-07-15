@@ -20,7 +20,7 @@ ARGV.each do |filename|
     line_number = lines.size
     column_number = lines.last.size
     message_lines = e.message.split("\n")
-    puts [filename, line_number, column_number, message_lines.shift].join(":")
+    puts [filename, line_number, column_number, "ERROR " + message_lines.shift].join(":")
     message_lines.each do |line|
       puts "  " + line
     end
