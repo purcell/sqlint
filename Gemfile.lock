@@ -1,0 +1,15 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    json (1.8.3)
+    pg_query (0.5.0)
+      json (~> 1.8)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  pg_query
+
+BUNDLED WITH
+   1.10.3
