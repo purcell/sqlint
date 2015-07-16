@@ -1,5 +1,10 @@
 #!/usr/bin/env ruby
 
+# What if 1000+ errors => --limit
+# Split on "; -- ..."
+
+
+
 $LOAD_PATH.unshift(File.dirname(File.realpath(__FILE__)) + '/../lib')
 require 'pg_query'
 require 'sqlint'
@@ -9,20 +14,22 @@ if ARGV.include?("--version")
   exit 0
 end
 
+ERROR_TYPES = {error: "ERROR", warning: "WARNING"}
+
 ARGV.each do |filename|
-  contents = File.read(filename)
-  begin
-    PgQuery.parse(File.read(filename))
-  rescue PgQuery::ParseError => e
-    offset = e.location
-    before_error = contents[0...(offset-1)]
-    lines = before_error.split("\n")
-    line_number = lines.size
-    column_number = lines.last.size
-    message_lines = e.message.split("\n")
-    puts [filename, line_number, column_number, "ERROR " + message_lines.shift].join(":")
-    message_lines.each do |line|
-      puts "  " + line
+  File.open(filename, 'r') do |file|
+    results = SQLint::Linter.new(filename, file).run
+    results.each do |lint|
+      message_lines = lint.message.split("\n")
+      puts [
+        lint.filename,
+        lint.line,
+        lint.column,
+        ERROR_TYPES[lint.type] + " " + message_lines.shift
+      ].join(":")
+      message_lines.each do |line|
+        puts "  " + line
+      end
     end
   end
 end
