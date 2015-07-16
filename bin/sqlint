@@ -14,6 +14,11 @@ if ARGV.include?("--version")
   exit 0
 end
 
+if ARGV.empty? || ARGV.include?("--help") || ARGV.include?("-h")
+  puts "Usage: sqlint file.sql ..."
+  exit 0
+end
+
 ERROR_TYPES = {error: "ERROR", warning: "WARNING"}
 
 ARGV.each do |filename|
