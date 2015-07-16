@@ -12,7 +12,7 @@ module SQLint
     end
 
     def run
-      [].tap do |results|
+      Enumerator.new do |results|
         state = ParseState.new(@input, 0)
         while state != END_PARSE
           error, new_parse_state = parse_next_error(state)

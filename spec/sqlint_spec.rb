@@ -7,7 +7,7 @@ RSpec.describe SQLint do
   let(:input) { "SELECT 1" }
   let(:input_stream) { StringIO.new(input) }
   subject(:linter) { SQLint::Linter.new(filename, input_stream) }
-  let(:results) { linter.run }
+  let(:results) { linter.run.to_a }
 
   def error(line, col, msg)
     SQLint::Linter::Lint.new(filename, line, col, :error, msg)
