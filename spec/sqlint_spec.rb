@@ -1,6 +1,7 @@
 require_relative '../lib/sqlint'
 
 RSpec.describe SQLint do
+  WIBBLE_ERROR = 'syntax error at or near "WIBBLE"'
 
   let(:filename) { "some/file/here.sql" }
   let(:input) { "SELECT 1" }
@@ -35,7 +36,7 @@ RSpec.describe SQLint do
       let(:input) { "WIBBLE" }
       it "reports one error" do
         expect(results.size).to eq(1)
-        expect(results.first).to eq(error(1, 1, 'syntax error at or near "WIBBLE"'))
+        expect(results.first).to eq(error(1, 1, WIBBLE_ERROR))
       end
     end
 
@@ -43,7 +44,7 @@ RSpec.describe SQLint do
       let(:input) { "SELECT 1;\nWIBBLE" }
       it "reports one error" do
         expect(results.size).to eq(1)
-        expect(results.first).to eq(error(2, 1, 'syntax error at or near "WIBBLE"'))
+        expect(results.first).to eq(error(2, 1, WIBBLE_ERROR))
       end
     end
 
@@ -52,6 +53,13 @@ RSpec.describe SQLint do
       it "reports one error" do
         expect(results.size).to eq(1)
         expect(results.first).to eq(error(1, 8, 'unterminated quoted string at or near "\'"'))
+      end
+    end
+
+    context "when there are 2 errors in separate statements" do
+      let(:input) { "WIBBLE; WIBBLE" }
+      it "report 2 errors" do
+        expect(results).to eq([error(1, 1, WIBBLE_ERROR), error(1, 9, WIBBLE_ERROR)])
       end
     end
   end
