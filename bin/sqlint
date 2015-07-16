@@ -21,11 +21,19 @@ end
 
 ERROR_TYPES = {error: "ERROR", warning: "WARNING"}
 
+class String
+  def sanitise
+    gsub(/[[:cntrl:]+]/) do |bad|
+      bad.codepoints.map { |c| "\\%04d" % c }.join
+    end
+  end
+end
+
 ARGV.each do |filename|
   File.open(filename, 'r') do |file|
     results = SQLint::Linter.new(filename, file).run
     results.each do |lint|
-      message_lines = lint.message.split("\n")
+      message_lines = lint.message.sanitise.split("\n")
       puts [
         lint.filename,
         lint.line,
