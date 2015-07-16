@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/purcell/sqlint.png?branch=master)](https://travis-ci.org/purcell/sqlint)
+
 ## SQLint - a simple SQL linter
 
 ### About
