@@ -31,7 +31,7 @@ Gem::Specification.new do |s|
   s.executables = s.files.grep(%r{^bin/}) { |f| File.basename(f) }
   s.extra_rdoc_files = ['LICENSE.txt', 'README.md']
   s.homepage = 'https://github.com/purcell/sqlint'
-  s.licenses = ['GPL']
+  s.licenses = ['MIT']
   s.require_paths = ['lib']
   s.rubygems_version = '1.8.23'
   s.summary = 'Simple SQL linter.'
