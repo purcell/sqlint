@@ -35,24 +35,28 @@ RSpec.describe SQLint do
     context "with a single invalid keyword" do
       let(:input) { "WIBBLE" }
       it "reports one error" do
-        expect(results.size).to eq(1)
-        expect(results.first).to eq(error(1, 1, WIBBLE_ERROR))
+        expect(results).to eq([error(1, 1, WIBBLE_ERROR)])
+      end
+    end
+
+    context "with two successive invalid keywords" do
+      let(:input) { "WIBBLE WIBBLE" }
+      it "report 2 errors" do
+        expect(results).to eq([error(1, 1, WIBBLE_ERROR)])
       end
     end
 
     context "with a single invalid keyword on a later line" do
       let(:input) { "SELECT 1;\nWIBBLE" }
       it "reports one error" do
-        expect(results.size).to eq(1)
-        expect(results.first).to eq(error(2, 1, WIBBLE_ERROR))
+        expect(results).to eq([error(2, 1, WIBBLE_ERROR)])
       end
     end
 
     context "with a single error part-way through a line" do
       let(:input) { "SELECT '" }
       it "reports one error" do
-        expect(results.size).to eq(1)
-        expect(results.first).to eq(error(1, 8, 'unterminated quoted string at or near "\'"'))
+        expect(results).to eq([error(1, 8, 'unterminated quoted string at or near "\'"')])
       end
     end
 
