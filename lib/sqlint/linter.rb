@@ -15,7 +15,7 @@ module SQLint
       [].tap do |results|
         state = ParseState.new(@input, 0)
         while state != END_PARSE
-          error, new_parse_state = foo(state)
+          error, new_parse_state = parse_next_error(state)
           results << error if error
           state = new_parse_state
         end
@@ -24,13 +24,13 @@ module SQLint
 
     private
 
-    def foo(parse_state)
+    def parse_next_error(parse_state)
       begin
         PgQuery.parse(parse_state.input)
         [nil, END_PARSE]
       rescue PgQuery::ParseError => e
         offset = e.location + parse_state.offset
-        line_number, column_number = find_position(offset)
+        line_number, column_number = find_absolute_position(offset)
         lint = Lint.new(@filename, line_number, column_number, :error, e.message)
 
         input_from_error = parse_state.input[e.location..-1]
@@ -48,7 +48,7 @@ module SQLint
       end
     end
 
-    def find_position(offset)
+    def find_absolute_position(offset)
       lines_before_error = @input[0...(offset)].split("\n")
       line_number = lines_before_error.size
       column_number = lines_before_error.any? ? lines_before_error.last.size : 1
