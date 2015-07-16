@@ -62,5 +62,13 @@ RSpec.describe SQLint do
         expect(results).to eq([error(1, 1, WIBBLE_ERROR), error(1, 9, WIBBLE_ERROR)])
       end
     end
+
+    context "when there is a second error at the end of the file" do
+      let(:input) { "WIBBLE; SELECT 1 FROM" }
+      it "report 2 errors" do
+        expect(results).to eq([error(1, 1, WIBBLE_ERROR),
+                               error(1, 21, "syntax error at end of input")])
+      end
+    end
   end
 end

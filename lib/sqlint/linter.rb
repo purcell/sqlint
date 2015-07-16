@@ -34,7 +34,7 @@ module SQLint
         lint = Lint.new(@filename, line_number, column_number, :error, e.message)
 
         input_from_error = parse_state.input[e.location..-1]
-        semicolon_pos = input_from_error.index(";")
+        semicolon_pos = input_from_error.index(";") if input_from_error
         [
           lint,
           if semicolon_pos
