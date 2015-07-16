@@ -1,13 +1,10 @@
 #!/usr/bin/env ruby
 
-# What if 1000+ errors => --limit
-# Split on "; -- ..."
-
-
-
 $LOAD_PATH.unshift(File.dirname(File.realpath(__FILE__)) + '/../lib')
 require 'pg_query'
 require 'sqlint'
+
+LIMIT = 1000
 
 if ARGV.include?("--version")
   puts SQLint::VERSION
@@ -32,7 +29,7 @@ end
 saw_errors = false
 ARGV.each do |filename|
   File.open(filename, 'r') do |file|
-    results = SQLint::Linter.new(filename, file).run
+    results = SQLint::Linter.new(filename, file).run.first(LIMIT)
     results.each do |lint|
       message_lines = lint.message.split("\n")
       puts [
