@@ -37,7 +37,8 @@ Support for `sqlint` is provided for the following editors:
 
 ### Authors
 
-This software was written by Steve Purcell and Kieran Trezona-le Comte
+This software was written by [Steve Purcell](https://github.com/purcell)
+and [Kieran Trezona-le Comte](https://github.com/trezona-lecomte)
 with the support of our awesome employer
 [Powershop](http://www.powershop.co.nz/).
 
