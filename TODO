@@ -1,0 +1,9 @@
+- [-] More input test cases?
+- [-] Handle any warnings returned by PgQuery.parse
+- [X] Limit number of warnings
+- [ ] Optionally connect to a live DB to check referenced table/column names are valid
+- [ ] Refactor and test the CLI front end
+- [ ] Support for other SQL dialects
+- [ ] JSON output
+- [ ] Huge files
+- [ ] Maybe truncate long 'at or near "blah"' strings
