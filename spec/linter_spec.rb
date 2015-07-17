@@ -1,6 +1,6 @@
 require_relative '../lib/sqlint'
 
-RSpec.describe SQLint do
+RSpec.describe SQLint::Linter do
   WIBBLE_ERROR = 'syntax error at or near "WIBBLE"'
 
   let(:filename) { "some/file/here.sql" }
