@@ -31,7 +31,7 @@ module SQLint
       rescue PgQuery::ParseError => e
         offset = e.location + parse_state.offset
         line_number, column_number = find_absolute_position(offset)
-        lint = Lint.new(@filename, line_number, column_number, :error, e.message)
+        lint = Lint.new(@filename, line_number, column_number, :error, clean_message(e.message))
 
         input_from_error = parse_state.input[e.location..-1]
         semicolon_pos = input_from_error.index(";") if input_from_error
@@ -53,6 +53,10 @@ module SQLint
       line_number = lines_before_error.size
       column_number = lines_before_error.any? ? lines_before_error.last.size : 1
       [line_number, column_number]
+    end
+
+    def clean_message(message)
+      message.gsub(/(?<=at or near ")(.*)(?=")/) { |match| match[0..49] }
     end
   end
 end

@@ -69,9 +69,18 @@ RSpec.describe SQLint::Linter do
 
     context "when there is a second error at the end of the file" do
       let(:input) { "WIBBLE; SELECT 1 FROM" }
-      it "report 2 errors" do
+      it "reports 2 errors" do
         expect(results).to eq([error(1, 1, WIBBLE_ERROR),
                                error(1, 21, "syntax error at end of input")])
+      end
+    end
+  end
+
+  describe "long error messages" do
+    context "when the 'at or near' fragment is longer than 50 characters" do
+      let(:input) { "SELECT '" + 'x' * 100 }
+      it "truncates the fragment" do
+        expect(results).to eq([error(1, 8, "unterminated quoted string at or near \"'#{'x' * 49}\"")])
       end
     end
   end

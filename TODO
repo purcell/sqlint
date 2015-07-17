@@ -6,4 +6,4 @@
 - [ ] Support for other SQL dialects
 - [ ] JSON output
 - [ ] Huge files
-- [ ] Maybe truncate long 'at or near "blah"' strings
+- [X] Maybe truncate long 'at or near "blah"' strings
