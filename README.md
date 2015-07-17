@@ -1,4 +1,6 @@
-[![Build Status](https://travis-ci.org/purcell/sqlint.png?branch=master)](https://travis-ci.org/purcell/sqlint)
+[![Build Status](https://travis-ci.org/purcell/sqlint.svg?branch=master)](https://travis-ci.org/purcell/sqlint)
+[ ![](https://img.shields.io/gem/v/sqlint.svg)](https://rubygems.org/gems/sqlint)
+[ ![](https://img.shields.io/gem/dt/sqlint.svg)](https://rubygems.org/gems/sqlint)
 
 ## SQLint - a simple SQL linter
 
