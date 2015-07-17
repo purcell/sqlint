@@ -3,17 +3,31 @@
 $LOAD_PATH.unshift(File.dirname(File.realpath(__FILE__)) + '/../lib')
 require 'pg_query'
 require 'sqlint'
+require 'optparse'
 
 LIMIT = 1000
 
-if ARGV.include?("--version")
-  puts SQLint::VERSION
-  exit 0
+options = { limit: 1000 }
+optparse = OptionParser.new do |opts|
+  opts.banner = "Usage: #{File.basename($0)} [options] file.sql ..."
+  opts.separator ""
+  opts.separator "Options:"
+  opts.on("--limit=N", Integer, "Limit checking to N errors") do |n|
+    options[:limit] = n
+  end
+  opts.on_tail("-h", "--help", "Print this help") do
+    puts opts
+    exit 0
+  end
+  opts.on_tail("-v", "--version", "Display the version") do
+    puts SQLint::VERSION
+    exit 0
+  end
 end
-
-if ARGV.empty? || ARGV.include?("--help") || ARGV.include?("-h")
-  puts "Usage: sqlint file.sql ..."
-  exit 0
+optparse.parse!(ARGV)
+if ARGV.empty?
+  puts optparse
+  exit 1
 end
 
 ERROR_TYPES = {error: "ERROR", warning: "WARNING"}
@@ -29,7 +43,7 @@ end
 saw_errors = false
 ARGV.each do |filename|
   File.open(filename, 'r') do |file|
-    results = SQLint::Linter.new(filename, file).run.first(LIMIT)
+    results = SQLint::Linter.new(filename, file).run.first(options[:limit])
     results.each do |lint|
       message_lines = lint.message.split("\n")
       puts [
