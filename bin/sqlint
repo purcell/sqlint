@@ -12,7 +12,7 @@ optparse = OptionParser.new do |opts|
   opts.banner = "Usage: #{File.basename($0)} [options] file.sql ..."
   opts.separator ""
   opts.separator "Options:"
-  opts.on("--limit=N", Integer, "Limit checking to N errors") do |n|
+  opts.on("--limit=N", Integer, "Limit checking to N errors (default: #{options[:limit]})") do |n|
     options[:limit] = n
   end
   opts.on_tail("-h", "--help", "Print this help") do
