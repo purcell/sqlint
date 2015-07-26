@@ -35,7 +35,7 @@ Support for `sqlint` is provided for the following editors:
 
 - Emacs, via [Flycheck](https://github.com/flycheck/flycheck)
 - VIM, via [Syntastic](https://github.com/scrooloose/syntastic)
-- SublimeText, via [SublimeLinter package](https://github.com/SublimeLinter/SublimeLinter3/)
+- SublimeText, via [SublimeLinter](https://github.com/SublimeLinter/SublimeLinter3/)
 
 ### Authors
 
