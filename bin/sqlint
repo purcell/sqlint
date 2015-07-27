@@ -5,8 +5,6 @@ require 'pg_query'
 require 'sqlint'
 require 'optparse'
 
-LIMIT = 1000
-
 options = { limit: 1000 }
 optparse = OptionParser.new do |opts|
   opts.banner = "Usage: #{File.basename($0)} [options] file.sql ..."
@@ -40,24 +38,27 @@ class String
   end
 end
 
+def display_lint(lint)
+  message_lines = lint.message.split("\n")
+  puts [
+    lint.filename,
+    lint.line,
+    lint.column,
+    ERROR_TYPES[lint.type] + " " + message_lines.shift.sanitise
+  ].join(":")
+  message_lines.each do |line|
+    puts "  " + line.sanitise
+  end
+end
+
 saw_errors = false
 ARGV.each do |filename|
   File.open(filename, 'r') do |file|
     results = SQLint::Linter.new(filename, file).run.first(options[:limit])
     results.each do |lint|
-      message_lines = lint.message.split("\n")
-      puts [
-        lint.filename,
-        lint.line,
-        lint.column,
-        ERROR_TYPES[lint.type] + " " + message_lines.shift.sanitise
-      ].join(":")
-      message_lines.each do |line|
-        puts "  " + line.sanitise
-      end
-
-      saw_errors ||= (lint.type == :error)
+      display_lint(lint)
     end
+    saw_errors ||= results.any? { |lint| lint.type == :error }
   end
 end
 
