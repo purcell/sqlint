@@ -56,7 +56,9 @@ module SQLint
     end
 
     def clean_message(message)
-      message.gsub(/(?<=at or near ")(.*)(?=")/) { |match| match[0..49] }
+      message
+      .gsub(/(?<=at or near ")(.*)(?=")/) { |match| match[0..49] }
+      .gsub(/\s+\(scan\.l\:\d+\)/, '')
     end
   end
 end
