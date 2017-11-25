@@ -3,9 +3,9 @@ test:
 
 gem:
 	# Ensure perms are correct
-	find . -type d -not -path "./.git/*" -exec chmod a+rx '{}' ';'
-	find . -type f -not -path "./.git/*" -exec chmod a+r '{}' ';'
-	chmod a+x bin/sqlint
+	chmod +x bin/sqlint
+	chmod -R a+r *
+	chmod -R a+X *
 	gem build sqlint.gemspec
 
 .PHONY: gem test
