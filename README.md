@@ -35,7 +35,7 @@ sqlint filename.sql
 Support for `sqlint` is provided for the following editors:
 
 - Emacs, via [Flycheck](https://github.com/flycheck/flycheck)
-- VIM, via [Syntastic](https://github.com/scrooloose/syntastic) or [Neomake](https://github.com/neomake/neomake)
+- VIM, via [Syntastic](https://github.com/scrooloose/syntastic), [Neomake](https://github.com/neomake/neomake) or [ALE](https://github.com/w0rp/ale)
 - SublimeText, via [SublimeLinter](https://github.com/SublimeLinter/SublimeLinter3/)
 
 ### Authors
