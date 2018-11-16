@@ -21,8 +21,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  pg_query
+  pg_query (>= 1.0, < 2)
   rspec
 
 BUNDLED WITH
-   1.14.6
+   1.17.1
