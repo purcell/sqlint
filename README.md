@@ -38,6 +38,18 @@ Support for `sqlint` is provided for the following editors:
 - VIM, via [Syntastic](https://github.com/scrooloose/syntastic), [Neomake](https://github.com/neomake/neomake) or [ALE](https://github.com/w0rp/ale)
 - SublimeText, via [SublimeLinter](https://github.com/SublimeLinter/SublimeLinter3/)
 
+
+### Using with pre-commit
+
+Add this to your `.pre-commit-hooks.yaml`:
+
+```yaml
+-   repo: https://github.com/purcell/sqlint
+    rev: master
+    hooks:
+    -   id: sqlint
+```
+
 ### Authors
 
 This software was written by
