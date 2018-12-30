@@ -54,10 +54,7 @@ Add this to your `.pre-commit-hooks.yaml`:
 
 This software was written by
 [Steve Purcell](https://github.com/purcell) and
-[Kieran Trezona-le Comte](https://github.com/trezona-lecomte) with the
-support of our awesome employer
-[Powershop](http://www.powershop.co.nz/), who have other cool stuff
-[here on Github](https://github.com/powershop).
+[Kieran Trezona-le Comte](https://github.com/trezona-lecomte).
 
 ### License and copyright
 
