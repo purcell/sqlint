@@ -32,6 +32,13 @@ RSpec.describe SQLint::Linter do
       end
     end
 
+    context "with a single substitution token" do
+      let(:input) { "SELECT %s" }
+      it "reports no errors" do
+        expect(results).to be_empty
+      end
+    end
+
     context "with a single invalid keyword" do
       let(:input) { "WIBBLE" }
       it "reports one error" do
