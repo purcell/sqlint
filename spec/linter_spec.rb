@@ -25,6 +25,20 @@ RSpec.describe SQLint::Linter do
     end
   end
 
+  context "with valid PG 12 syntax" do
+    let(:input) do <<-EOF
+      CREATE TABLE things (
+        x_in numeric,
+        x_cm numeric GENERATED ALWAYS AS (x / 2.54) STORED
+      );
+      EOF
+    end
+
+    it "reports no errors" do
+      expect(results).to be_empty
+    end
+  end
+
   describe "single errors" do
     context "with a single valid statement" do
       it "reports no errors" do
