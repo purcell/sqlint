@@ -11,8 +11,8 @@ SQLint is a simple command-line linter which reads your SQL files and
 reports any syntax errors or warnings it finds.
 
 At this stage, SQLint checks SQL against the ANSI syntax, and uses the
-PostgreSQL SQL parser to achieve this. In time, we hope to add support
-for non-standard SQL variants (e.g. MySQL). Contributions are welcome.
+PostgreSQL SQL parser to achieve this. SQLint does not have support
+for non-standard SQL variants (e.g. MySQL), but contributions are welcome.
 
 ### Installation
 
@@ -29,6 +29,8 @@ To check the syntax of a file containing SQL, simply pass the filename to `sqlin
 ```
 sqlint filename.sql
 ```
+
+In the absence of a filename, `sqlint` reads from standard input.
 
 ### Editor plugins
 
@@ -58,4 +60,16 @@ This software was written by
 
 ### License and copyright
 
-Copyright Powershop NZ Ltd. MIT license.
+Copyright 2015-2018 Powershop NZ Ltd.
+Copyright 2018-2021 Steve Purcell.
+MIT license.
+
+<hr>
+
+[💝 Support this project and my other Open Source work via Patreon](https://www.patreon.com/sanityinc)
+
+[💼 LinkedIn profile](https://uk.linkedin.com/in/stevepurcell)
+
+[✍ sanityinc.com](http://www.sanityinc.com/)
+
+[🐦 @sanityinc](https://twitter.com/sanityinc)
