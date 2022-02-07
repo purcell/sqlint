@@ -39,5 +39,5 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency('pg_query', '~> 2')
   s.add_development_dependency('rake', '>= 12.3.3')
   s.add_development_dependency('rspec', '~> 3.2')
-  s.add_development_dependency('bundler', '~> 1.3')
+  s.add_development_dependency('bundler', '>= 2.2.33')
 end
