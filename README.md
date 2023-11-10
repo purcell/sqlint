@@ -1,4 +1,4 @@
-[![Build Status](https://github.com/purcell/sqlint/workflows/CI/badge.svg)](https://github.com/purcell/sqlint/actions)
+[![Build Status](https://github.com/purcell/sqlint/actions/workflows/ci.yml/badge.svg)](https://github.com/purcell/sqlint/actions/workflows/ci.yml)
 [ ![](https://img.shields.io/gem/v/sqlint.svg)](https://rubygems.org/gems/sqlint)
 [ ![](https://img.shields.io/gem/dt/sqlint.svg)](https://rubygems.org/gems/sqlint)
 <a href="https://www.patreon.com/sanityinc"><img alt="Support me" src="https://img.shields.io/badge/Support%20Me-%F0%9F%92%97-ff69b4.svg"></a>
