@@ -24,7 +24,7 @@
       in
       {
         devShell = pkgs.mkShell {
-          buildInputs = [ pkgs.ruby pkgs.bundler env pkgs.bundix ];
+          buildInputs = [ pkgs.ruby env pkgs.bundix ];
         };
       }
     );

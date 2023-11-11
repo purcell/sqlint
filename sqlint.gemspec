@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.name = 'sqlint'
   s.version = SQLint::VERSION
   s.platform = Gem::Platform::RUBY
-  s.required_ruby_version = '>= 1.9.3'
+  s.required_ruby_version = '>= 2.7'
   s.authors = ['Steve Purcell', 'Kieran Trezona-le Comte']
   s.description = <<-EOF
     Simple SQL linter.
@@ -36,7 +36,7 @@ Gem::Specification.new do |s|
   s.rubygems_version = '1.8.23'
   s.summary = 'Simple SQL linter.'
 
-  s.add_runtime_dependency('pg_query', '~> 2')
+  s.add_runtime_dependency('pg_query', '>= 1')
   s.add_development_dependency('rake', '>= 12.3.3')
   s.add_development_dependency('rspec', '~> 3.2')
   s.add_development_dependency('bundler', '>= 2.2.33')
