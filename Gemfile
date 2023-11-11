@@ -1,7 +1,6 @@
 source "https://rubygems.org"
 
-gem "pg_query", ">= 1.0", "< 3"
-gem "bundler", "2.3.20"
+gem "pg_query", ">= 1.0"
 
 group :development do
   gem "rspec"
