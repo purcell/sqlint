@@ -13,7 +13,7 @@
         env = pkgs.bundlerEnv {
           name = "sqlint";
           gemdir = ./.;
-          groups = ["default" "development" "test"];
+          groups = [ "default" "development" "test" ];
 
           meta = with pkgs.lib;
             {
@@ -24,7 +24,7 @@
       in
       {
         devShell = pkgs.mkShell {
-          buildInputs = [ pkgs.ruby env pkgs.bundix ];
+          buildInputs = [ env pkgs.bundix ];
         };
       }
     );
