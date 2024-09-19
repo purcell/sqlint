@@ -2,7 +2,7 @@ GEM
   remote: https://rubygems.org/
   specs:
     diff-lcs (1.5.0)
-    google-protobuf (3.25.0)
+    google-protobuf (3.25.5)
     pg_query (4.2.3)
       google-protobuf (>= 3.22.3)
     rake (13.1.0)
