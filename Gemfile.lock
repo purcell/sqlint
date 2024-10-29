@@ -1,24 +1,27 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    diff-lcs (1.5.0)
-    google-protobuf (3.25.0)
-    pg_query (4.2.3)
+    bigdecimal (3.1.8)
+    diff-lcs (1.5.1)
+    google-protobuf (4.28.3)
+      bigdecimal
+      rake (>= 13)
+    pg_query (5.1.0)
       google-protobuf (>= 3.22.3)
-    rake (13.1.0)
-    rspec (3.12.0)
-      rspec-core (~> 3.12.0)
-      rspec-expectations (~> 3.12.0)
-      rspec-mocks (~> 3.12.0)
-    rspec-core (3.12.2)
-      rspec-support (~> 3.12.0)
-    rspec-expectations (3.12.3)
+    rake (13.2.1)
+    rspec (3.13.0)
+      rspec-core (~> 3.13.0)
+      rspec-expectations (~> 3.13.0)
+      rspec-mocks (~> 3.13.0)
+    rspec-core (3.13.2)
+      rspec-support (~> 3.13.0)
+    rspec-expectations (3.13.3)
       diff-lcs (>= 1.2.0, < 2.0)
-      rspec-support (~> 3.12.0)
-    rspec-mocks (3.12.6)
+      rspec-support (~> 3.13.0)
+    rspec-mocks (3.13.2)
       diff-lcs (>= 1.2.0, < 2.0)
-      rspec-support (~> 3.12.0)
-    rspec-support (3.12.1)
+      rspec-support (~> 3.13.0)
+    rspec-support (3.13.1)
 
 PLATFORMS
   ruby
@@ -28,5 +31,8 @@ DEPENDENCIES
   rake
   rspec
 
+RUBY VERSION
+   ruby 3.3.5p100
+
 BUNDLED WITH
-   2.4.2
+   2.5.16

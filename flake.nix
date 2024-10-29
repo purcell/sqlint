@@ -3,29 +3,31 @@
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixpkgs-unstable";
-    flake-utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = { self, nixpkgs, flake-utils }@inputs:
-    flake-utils.lib.eachDefaultSystem (system:
-      let
-        pkgs = import nixpkgs { inherit system; };
-        env = pkgs.bundlerEnv {
-          name = "sqlint";
-          gemdir = ./.;
-          groups = [ "default" "development" "test" ];
+  outputs = { self, nixpkgs }@inputs:
+    let
+      forAllSystems = nixpkgs.lib.genAttrs nixpkgs.lib.platforms.all;
+    in
+      {
+        devShell =forAllSystems (system:
+          let
+            pkgs = import nixpkgs { inherit system; };
+            env = pkgs.bundlerEnv {
+              name = "sqlint";
+              gemdir = ./.;
+              groups = [ "default" "development" "test" ];
 
-          meta = with pkgs.lib;
+              meta = with pkgs.lib;
             {
               description = "sqlint";
               platforms = platforms.unix;
             };
-        };
-      in
-      {
-        devShell = pkgs.mkShell {
-          buildInputs = [ env pkgs.bundix ];
-        };
-      }
-    );
+            };
+          in
+            pkgs.mkShell {
+              buildInputs = [ env pkgs.bundix ];
+            }
+      );
+      };
 }
