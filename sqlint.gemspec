@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.name = 'sqlint'
   s.version = SQLint::VERSION
   s.platform = Gem::Platform::RUBY
-  s.required_ruby_version = '>= 2.7'
+  s.required_ruby_version = '>= 3.0'
   s.authors = ['Steve Purcell', 'Kieran Trezona-le Comte']
   s.description = <<-EOF
     Simple SQL linter.
