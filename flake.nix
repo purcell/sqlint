@@ -2,19 +2,15 @@
   description = "sqlint tool";
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "https://channels.nixos.org/nixpkgs-unstable/nixexprs.tar.zst";
   };
 
   outputs =
     { self, nixpkgs }@inputs:
-    let
-      forAllSystems = nixpkgs.lib.genAttrs nixpkgs.lib.platforms.all;
-    in
     {
-      devShell = forAllSystems (
-        system:
+      devShell = builtins.mapAttrs (
+        system: pkgs:
         let
-          pkgs = import nixpkgs { inherit system; };
           env = pkgs.bundlerEnv {
             name = "sqlint";
             gemdir = ./.;
@@ -36,6 +32,6 @@
             pkgs.bundix
           ];
         }
-      );
+      ) nixpkgs.legacyPackages;
     };
 }
